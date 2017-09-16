@@ -9,11 +9,16 @@ import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import cartService from './checkout/cart.service';
 
+import Login from './auth/login.component';
+import Register from './auth/register.component';
+import authService from './auth/auth.service';
+
 class App extends Component {
 
   constructor(props){
     super(props);
     this.cartService = new cartService();
+    this.authService = new authService();
     this.state = {
       cart: this.cartService.getCart()
     }
@@ -37,6 +42,8 @@ class App extends Component {
           <Route path='/pets' component={petList} />
           <Route path='/single/:id' render={ props => <PetProfile {...props} addToCart={item => this.addToCart(item) } />}  />
           <Route path='/checkout' component={Checkout} />
+          <Route path='/auth/login' component={Login} />
+          <Route path='/auth/register' component={Register} />
           </div>
       </BrowserRouter>
     )
@@ -158,11 +165,20 @@ class App extends Component {
                       </div>
                     </div>
                   </li>
-                <li><a className="color4" href="login.html">Login</a></li>				
+                <li>{( !this.authService.isLoggedIn() )?(
+                            <a className="color4" href="/auth/login" >Login</a>
+                            ):(
+                            <a className="color4" onClick={()=>this.authService.logout()}>Log Out</a>
+                            )
+                    }
+                  </li>				
                 <li><a className="color6" href="contact.html">Contact</a></li>
                 </ul> 
               </div>
                 
+
+
+
               <div className="clearfix"> </div>
             </div>
           </div>
@@ -218,7 +234,7 @@ class App extends Component {
                 </div>
               </div>
             <div className="footer-class w3-agile">
-              <p>© 2015 Mattress . All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+              <p>© 2017 FET 2017, Designers </p>
             </div>
         </div>
       </div>
