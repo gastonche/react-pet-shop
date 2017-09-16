@@ -8,7 +8,13 @@ class petService{
         return new Promise((resolve, reject)=>{
             $.getJSON(this.host + "/api/products", {},
                 (res) => {
-                    console.log(res);
+                    res.content = res.content.map(data => {
+                        return {
+                            ...data,
+                            image: data.imagePath || "https://usercontent2.hubstatic.com/6561263_f520.jpg",
+                            price: data.unitPrice
+                        }
+                    });
                     resolve({
                         featured: res.content.splice(0, 4),
                         popular: res.content.splice(0, 4)
@@ -27,8 +33,15 @@ class petService{
         return new Promise((resolve, reject) => {
             $.getJSON( this.host + "/api/products", {},
                 (res) => {
+                    res.content = res.content.map(data => {
+                        return {
+                            ...data,
+                            image: data.imagePath || "https://usercontent2.hubstatic.com/6561263_f520.jpg",
+                            price: data.unitPrice
+                        }
+                    });
                     resolve({
-                        data: res.data.splice(start, take)
+                        data: res.content.splice(start, take)
                     })
                 },
                 data => reject({
@@ -40,17 +53,22 @@ class petService{
     }
     getThisPet(id=0){
         return new Promise((resolve, reject) => {
-            $.getJSON(this.host + "/api/products", {},
+            $.getJSON(this.host + "/api/products/", {},
                 (res) => {
-                    const pet = res.data.reduce((cache, item) => {
+                    res.content = res.content.map(data => {
+                        return {
+                            ...data,
+                            image: data.imagePath || "https://usercontent2.hubstatic.com/6561263_f520.jpg",
+                            price: data.unitPrice
+                        }
+                    });
+                    const pet = res.content.reduce((cache, item) => {
                         if(item.id==id) 
                             return item;
                         else
                             return cache;
                     }, {});
-                    const related = res.data.splice(res.data.indexOf(pet), 3);
-                    console.log(pet);
-                    console.log(related);
+                    const related = res.content.splice(res.content.indexOf(pet), 3);
                     resolve({
                         pet: pet,
                         related: related
@@ -62,6 +80,35 @@ class petService{
                 })
             )
         })
+    }
+    getEditPet(id=0){
+        return new Promise((resolve, reject) => {
+            $.getJSON(this.host+"/api/products/"+id, 
+                (res) => {
+                    resolve({
+                        pet: {...res, price: res.unitPrice, image: res.imagePath || "https://usercontent2.hubstatic.com/6561263_f520.jpg"}
+                    })
+                },
+                (err) => reject({
+                    status: "error",
+                    error: err
+                })
+            );    
+        });
+        
+    }
+
+    deletePet(id){
+        return new Promise((resolve, reject) => {
+            $.post(this.host+"/api/products/"+id+"/delete",
+                () => {
+                    resolve({})
+                }, 
+                () => {
+                    reject({})
+                }
+            )
+        });
     }
 }
 

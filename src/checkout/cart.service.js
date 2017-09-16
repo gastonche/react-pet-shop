@@ -38,7 +38,8 @@ class cartService{
           if(i.id == item.id){
             found = true;
             cart.total += parseFloat(item.price);
-            return {...i, quantity: i.quantity+1};
+            i.quantity++;
+            return i;
           }
           return i;
         });
@@ -52,7 +53,7 @@ class cartService{
     }
     removeItem(index){
         let item = this.cart.items.splice(index, 1);
-        this.cart.total-= item.price*item.quantity;
+        this.cart.total = parseFloat(this.cart.total) - parseFloat(item.price*item.quantity);
         sessionStorage.setItem("simple-cart", JSON.stringify(this.cart));
         return this.cart;
     }

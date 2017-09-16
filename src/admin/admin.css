@@ -1,0 +1,28 @@
+.big-btn{
+    height: 200px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 80px;
+    font-size: 20px;
+}
+
+.pink{
+    background: pink;
+}
+
+.sky{
+    background: skyblue;
+}
+
+.orange{
+    background: orange;
+}
+
+.beige{
+    background: palegoldenrod;
+}
+
+.containered{
+    padding: 40px;
+}
