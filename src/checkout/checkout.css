@@ -1,0 +1,13 @@
+.checkout-img{
+    height: 150px;
+}
+
+.close{
+    background: url(/images/close_1.png) no-repeat 0px 0px;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}

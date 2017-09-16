@@ -1,0 +1,17 @@
+#slide-item{
+    display: inline-block;
+    width: 25%;
+}
+
+.image{
+    height: 300px;
+}
+
+.full-image{
+    width: 100%;
+    height: 400px;
+}
+
+.related-img{
+    height: 200px;
+}
