@@ -69,7 +69,7 @@ export default class adminItems extends Component {
                                                 <td>{item.description}</td>
                                                 <td>
                                                     <div className="btn-group">
-                                                        <a href={"/products/"+item.id} className="btn btn-primary">Edit</a>
+                                                        <a href={"/products/"+item.id+"/edit"} className="btn btn-primary">Edit</a>
                                                         <button className="btn btn-danger" onClick={() => this.deletePet(item.id)} >Delete</button>
                                                     </div>
                                                 </td>

@@ -53,7 +53,7 @@ class cartService{
     }
     removeItem(index){
         let item = this.cart.items.splice(index, 1);
-        this.cart.total-= item.price*item.quantity;
+        this.cart.total = parseFloat(this.cart.total) - parseFloat(item.price*item.quantity);
         sessionStorage.setItem("simple-cart", JSON.stringify(this.cart));
         return this.cart;
     }
