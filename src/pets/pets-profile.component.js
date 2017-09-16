@@ -26,7 +26,7 @@ class petProfile extends Component{
     }
 
     renderPet(pet){
-        if(pet && pet.id>=0){
+        if(pet){
             return(
             <div className="top-sing">
                 <div className="col-md-7 single-top">	

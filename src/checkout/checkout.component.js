@@ -48,7 +48,7 @@ class checkout extends Component{
                             ))}
                         </div>
                         <div className="col-md-3 cart-total">
-                            <a className="continue" href="#">Continue to basket</a>
+                            <a className="continue" href="pets">Continue Shopping</a>
                             <div className="price-details">
                                 <h3>Price Details</h3>
                                 <span>Total</span>
@@ -61,7 +61,7 @@ class checkout extends Component{
                             </div>	
                             <ul className="total_price">
                             <li className="last_price"> <h4>TOTAL</h4></li>	
-                            <li className="last_price"><span>6350.00</span></li>
+                            <li className="last_price"><span>{this.state.cart.total}</span></li>
                             <div className="clearfix"> </div>
                             </ul>
                             

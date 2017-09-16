@@ -8,6 +8,9 @@ import PetProfile from "./pets/pets-profile.component";
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import cartService from './checkout/cart.service';
+import adminIndex from './admin/index.admin.component';
+import adminItems from "./admin/items.admin.component";
+import editPet from "./admin/edit.admin.component";
 
 class App extends Component {
 
@@ -37,12 +40,15 @@ class App extends Component {
           <Route path='/pets' component={petList} />
           <Route path='/single/:id' render={ props => <PetProfile {...props} addToCart={item => this.addToCart(item) } />}  />
           <Route path='/checkout' component={Checkout} />
+          <Route path='/admin' component={adminIndex} />
+          <Route path='/catalogue' component={adminItems} />
+          <Route path='/products/:id/edit' component={editPet} />
           </div>
       </BrowserRouter>
     )
   }
   emptyCart(){
-    this.setState({cart: this.cartService});    
+    this.setState({cart: this.cartService.clearCart()});    
   }
 
   render() {

@@ -38,7 +38,8 @@ class cartService{
           if(i.id == item.id){
             found = true;
             cart.total += parseFloat(item.price);
-            return {...i, quantity: i.quantity+1};
+            i.quantity++;
+            return i;
           }
           return i;
         });
